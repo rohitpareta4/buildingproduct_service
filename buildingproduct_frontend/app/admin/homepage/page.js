@@ -1,10 +1,15 @@
 "use client";
-
+import Sidebar from "../sidebar/page";
 
 const Homepage = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-white via-[#002082] to-[#001a66] animate-gradient-x">
-     hello
+    <div className="bg-gray-700 min-h-screen grid grid-cols-4 ">
+      <div className="grid-col-span-1">
+        <Sidebar/>
+      </div>
+      <div className="grid-col-span-3">
+        helllllllllllo
+      </div>
     </div>
   );
 };
