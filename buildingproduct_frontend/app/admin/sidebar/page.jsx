@@ -1,38 +1,8 @@
-// const sidebar=()=>{
-//     return(
-//         <div className="bg-[yellow] min-h-screen p-2">
-//           <div className="">
-//              <div className="">
-//                 <button>Profile</button>
-//              </div>
-//               <div className="">
-//                 <button>Hospitals List</button>
-//              </div>
-//              <div className="">
-//                 <button>Ambulance</button>
-//              </div>
-//              <div className="">
-//                 <button>Add Ambulance</button>
-//              </div>
-//              <div className="">
-//                 <button>Add Hospitals</button>
-//              </div>
-//              <div className="">
-//                 <button>view Analytics</button>
-//              </div>
-//           </div>
-//         </div>
-//     )
-// }
-
-// export default sidebar
-
-
 import { Building, Ambulance, PlusSquare, BarChart3, Search, LogOut } from "lucide-react";
 
 const Sidebar = () => {
   return (
-    <div className="bg-gradient-to-b from-blue-700 to-blue-900 min-h-screen p-4 shadow-lg border-r-2 border-white flex flex-col justify-between">
+    <div className="bg-gradient-to-b from-blue-700 to-blue-900 h-full p-4 shadow-lg border-r-2 border-l-2 border-white flex flex-col justify-between">
       
       {/* 🔹 Top Section (Menu) */}
       <div className="flex flex-col gap-6">

@@ -1,28 +1,9 @@
-// const Navbar=()=>{
-//     return(
-//         <div className="bg-[gray] flex justify-around">
-//            <div className="">
-//               <h1 className="text-[white]">HospitalLogo</h1>
-//            </div>
-//            <div className="flex gap-4">
-//             <div>
-//              <h1 className="text-[white]">Admin</h1>
-//              </div>
-//                 <div>
-//              <h1 className="text-[white]">settings</h1>
-//              </div>
-//            </div>
-//         </div>
-//     )
-// }
-
-// export default Navbar
 const Navbar = () => {
   return (
-    <div className="bg-gradient-to-r from-blue-600 to-indigo-700 flex justify-between items-center px-8 py-4 shadow-lg">
+    <div className="bg-gradient-to-r from-blue-600 to-indigo-700 border-2  border-white h-[80px] flex justify-between items-center px-8 py-4 shadow-lg">
       {/* Logo */}
-      <h1 className="text-white font-bold text-2xl tracking-wide cursor-pointer">
-        HospitalLogo
+      <h1 className="tracking-wide cursor-pointer">
+        <img className="h-40 w-48" src="/healix.png"/>
       </h1>
 
       {/* Right Section */}
