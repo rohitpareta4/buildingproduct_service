@@ -3,15 +3,36 @@
     "use client"
     import { useState } from "react"
     import { useRouter } from "next/navigation"
-    
-    const login = () => {
+    import { useMutation } from "@tanstack/react-query"
+    import { login } from "../../apisection/api"
+
+    const Login = () => {
       const [email, setEmail] = useState('')
       const [password, setPassword] = useState('')
       const router = useRouter()
+
+      const mutation=useMutation({
+        mutationFn:login,
+        onSuccess:()=>{
+          alert('hey')
+          console.log('done...');
+        }
+      })
+
+      const handlesubmit=(e)=>{
+        e.preventDefault()
+          const logindata={
+            email:email,
+            password:password
+          }
+
+          mutation.mutate(logindata)
+      }
     
       return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 via-yellow-300 to-red-400">
           <form 
+          onSubmit={handlesubmit}
             className="bg-yellow-300 border-4 border-black p-8 w-full max-w-md flex flex-col gap-6  shadow-[6px_6px_0px_black] hover:shadow-[8px_8px_0px_black] transition-all duration-300"
           >
             {/* Mario Style Title */}
@@ -84,5 +105,5 @@
       )
     }
     
-    export default login
+    export default Login
     
