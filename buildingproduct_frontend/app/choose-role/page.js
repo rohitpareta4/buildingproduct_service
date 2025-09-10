@@ -5,20 +5,22 @@ import { userprofile } from "../admin/apisection/api";
 // 001a66
 const Chooserole = () => {
 
+   const router=useRouter();
 
   const {data,isLoading}=useQuery({
     queryKey:["me"],
-    queryFn:userprofile
+    queryFn:userprofile,
+    retry:false
   })
 
   if(isLoading){
     return <p>isLoading</p>
   }
- const router=useRouter();
+
   // router.push('/admin/auth/signup')
 
   const navigatetoreal=()=>{
-    if(data){
+    if(data && data?._id){
   router.push('/admin/homepage')
     }
     else{
@@ -45,7 +47,7 @@ const Chooserole = () => {
 
         {/* Hospital Button */}
         <button
-          href="/hospital"
+          onClick={()=>router.push('/hospital/auth/signup')}
           className="px-8 py-5 bg-green-600 cursor-pointer text-white border-2 border-black hover:border-white shadow-2xl  hover:bg-green-700 hover:scale-105 transform transition-all duration-300"
         >
           🏥 Hospital
