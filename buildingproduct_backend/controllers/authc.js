@@ -1,6 +1,6 @@
 import User from "../models/userM.js"
 import bcrypt, { compareSync } from "bcryptjs"
-import { generatetoken } from "../lib/utils.js"
+import { generatetoken,generatetokenhospital } from "../lib/utils.js"
 import adminH from "../models/Hospitaladmin.js"
 // import { use } from "react"
 
@@ -98,7 +98,7 @@ export const signupH=async(req,res)=>{
      if(password.length<6){
         return res.status(400).json({message:"password must be at least 6 characters..."})
     }
-    const userexists=await User.findOne({email})
+    const userexists=await adminH.findOne({email})
     if(userexists){
         return res.status(400).json({message:'user already exists with this email...'})
     }
@@ -111,7 +111,7 @@ export const signupH=async(req,res)=>{
         fullname
     })
     if(newuser){
-        generatetoken(newuser._id,res)
+        generatetokenhospital(newuser._id,res)
 
          await newuser.save()
 
@@ -150,7 +150,7 @@ export const loginH=async(req,res)=>{
         if(!ispassword){
            return res.status(400).json({message:"invalid credentials"});
         }
-        const token=generatetoken(user._id,res)
+        const token=generatetokenhospital(user._id,res)
 
     if(user){
       console.log('login is done.......')
@@ -166,5 +166,14 @@ export const loginH=async(req,res)=>{
     
   } catch (error) {
     console.log('error....',error)
+  }
+}
+
+export const userme=async(req,res)=>{
+  try {
+    console.log('userme..............',req.user)
+    return res.status(200).json(req.user)
+  } catch (error) {
+    console.log(error)
   }
 }

@@ -2,15 +2,23 @@
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { userprofile } from "../admin/apisection/api";
+import { me } from "../hospital/apisectionH/apiH";
 // 001a66
 const Chooserole = () => {
 
    const router=useRouter();
 
-  const {data,isLoading}=useQuery({
-    queryKey:["me"],
+  const {data:admin,isLoading}=useQuery({
+    queryKey:["admin"],
     queryFn:userprofile,
     retry:false
+  })
+
+  const {data:hospital}=useQuery({
+    queryKey:['hospital'],
+    queryFn:me,
+    retry:false
+
   })
 
   if(isLoading){
@@ -20,13 +28,24 @@ const Chooserole = () => {
   // router.push('/admin/auth/signup')
 
   const navigatetoreal=()=>{
-    if(data && data?._id){
+    if(admin && admin?._id){
   router.push('/admin/homepage')
     }
     else{
   router.push('/admin/auth/signup')
     }
   }
+
+  const navigatetohospital=()=>{
+     if(hospital && hospital?._id){
+  router.push('/hospital/homepageH')
+    }
+    else{
+  router.push('/hospital/auth/signup')
+    }
+  }
+
+  
 
 
  
@@ -47,7 +66,7 @@ const Chooserole = () => {
 
         {/* Hospital Button */}
         <button
-          onClick={()=>router.push('/hospital/auth/signup')}
+          onClick={navigatetohospital}
           className="px-8 py-5 bg-green-600 cursor-pointer text-white border-2 border-black hover:border-white shadow-2xl  hover:bg-green-700 hover:scale-105 transform transition-all duration-300"
         >
           🏥 Hospital

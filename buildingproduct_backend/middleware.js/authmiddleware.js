@@ -1,9 +1,10 @@
 import jwt from "jsonwebtoken";
 import User from "../models/userM.js";
+import adminH from "../models/Hospitaladmin.js";
 
 export const protectRoute=async(req,res,next)=>{
    try {
-    const token=req.cookies.jwt;
+    const token=req.cookies.admin_jwt;
     console.log("token is",req.cookies)
     if(!token){
        return res.status(401).json({message:"unauthorized-No token provided"})
@@ -22,3 +23,30 @@ export const protectRoute=async(req,res,next)=>{
     console.log('error',error.message)
    }
 }
+
+
+
+export const protectHospitalRoute = async (req, res, next) => {
+  try {
+    const token = req.cookies.hospital_jwt;
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized - No token provided" });
+    }
+
+    const decode = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decode) {
+      return res.status(401).json({ message: "Invalid token" });
+    }
+
+    const hospitalUser = await adminH.findById(decode.userId).select("-password");
+    if (!hospitalUser) {
+      return res.status(404).json({ message: "Hospital admin not found" });
+    }
+
+    req.user = hospitalUser;
+    next();
+  } catch (error) {
+    console.log("error", error.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
