@@ -17,7 +17,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="bg-[yellow] h-[80px] flex justify-between items-center px-8 py-4 shadow-md">
+    <div className="bg-green-300 h-[80px] flex justify-between items-center px-8 py-4 shadow-md">
       {/* Logo */}
       <h1 className="tracking-wide cursor-pointer">
         <img className="h-40 w-48" src="/healix.png" />
