@@ -37,7 +37,7 @@ const Navbar = () => {
           <h2>{data?.fullname}</h2>
         </div>
         <h1 className="text-gray-800 font-medium hover:text-yellow-600 transition-colors cursor-pointer">
-          Settings
+          Logout
         </h1>
       </div>
     </div>
