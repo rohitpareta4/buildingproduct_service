@@ -2,15 +2,21 @@
 "use client"
 import { Bed } from "lucide-react";
 import Updatebeds from "../Update/Updatebeds";
+import Markdoctor from "../Update/MarkA&Udoctor";
 import { useState,useRef } from "react";
 
 const Available = () => {
 
 
     const [showupdatebeds,setShowupdatebeds]=useState(false)
+    const [showdoctorAvailability,setShowdoctorAvailability]=useState(false)
 
     const updatebedsModal=()=>{
         setShowupdatebeds(true)
+    }
+
+    const doctorAvailability=()=>{
+      setShowdoctorAvailability(true)
     }
 
     const bedsref=useRef(null)
@@ -69,7 +75,10 @@ const Available = () => {
           </div>
         </div>
         <button className="mt-auto text-blue-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-full">View All</button>
-        <button className="mt-auto text-blue-900 bg-green-400 hover:bg-green-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-full">Mark available & Unavailable</button>
+        <button className="mt-auto text-blue-900 bg-green-400 hover:bg-green-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-full" onClick={doctorAvailability}>Mark available & Unavailable</button>
+        {showdoctorAvailability && (
+          <Markdoctor setShowdoctorAvailability={setShowdoctorAvailability}/>
+        )}
       </div>
 
       {/* Available Ambulance Card */}
