@@ -3,8 +3,29 @@
 // import { userprofile } from "../apisection/api"
 import { useQuery } from "@tanstack/react-query"
 import { me } from "../apisectionH/apiH"
+import { useState,useEffect } from "react"
 
 const Navbar = () => {
+
+const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true)   // when user scrolls
+    } else {
+      setIsScrolled(false)  // when at top
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll)
+
+  // cleanup (very important!)
+  return () => {
+    window.removeEventListener("scroll", handleScroll)
+  }
+}, [])
+
   const { data, isLoading } = useQuery({
     queryKey: ["me"],
     queryFn: me,
@@ -16,8 +37,12 @@ const Navbar = () => {
     return <p>Loading....</p>
   }
 
+
+
+
+
   return (
-    <div className="bg-green-300 h-[80px] flex justify-between items-center px-8 py-4 shadow-md">
+    <div className={`bg-green-300 h-[80px] flex justify-between items-center px-8 py-4 border-4 border-white shadow-[4px_4px_0_black] sticky ${isScrolled ? "top-0" : "top-2"} z-100`}>
       {/* Logo */}
       <h1 className="tracking-wide cursor-pointer">
         <img className="h-40 w-48" src="/healix.png" />

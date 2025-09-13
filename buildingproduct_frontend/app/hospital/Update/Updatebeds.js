@@ -10,12 +10,12 @@ const Updatebeds = ({setShowupdatebeds}) => {
   const [generalbeds, setGeneralBeds] = useState("")
   const [privatebeds, setPrivateBeds] = useState("")
 
-  const mutation=useMutation({
-    mutationFn:,
-    onSuccess:()=>{
-        console.log('done....')
-    }
-  })
+  // const mutation=useMutation({
+  //   mutationFn:,
+  //   onSuccess:()=>{
+  //       console.log('done....')
+  //   }
+  // })
 
   const handlesubmit = (e) => {
     e.preventDefault()
