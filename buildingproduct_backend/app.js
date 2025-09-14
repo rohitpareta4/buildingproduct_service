@@ -4,6 +4,8 @@ import connecttodb from './lib/db.js'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import auth from './routes/auth.js'
+import hospital from './routes/hospital.js'
+
 
 const app=express()
 
@@ -25,6 +27,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/api/auth',auth)
+app.use('/api/hospital',hospital)
 
 const port=process.env.PORT
 

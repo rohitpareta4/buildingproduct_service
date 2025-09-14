@@ -4,8 +4,22 @@ import { Bed } from "lucide-react";
 import Updatebeds from "../Update/Updatebeds";
 import Markdoctor from "../Update/MarkA&Udoctor";
 import { useState,useRef } from "react";
+import { useHospitalstore } from "../store/useHopitalstore";
+import { useQuery } from "@tanstack/react-query";
+
 
 const Available = () => {
+
+  const {Availablebeds,getAvailablebedsdata}=useHospitalstore()
+
+  console.log(Availablebeds)
+
+  const {data}=useQuery({
+    queryKey:['beds'],
+    queryFn:getAvailablebedsdata
+  })
+
+  console.log("beds data",data)
 
 
     const [showupdatebeds,setShowupdatebeds]=useState(false)
@@ -47,11 +61,13 @@ const Available = () => {
           </div>
           <h1 className="text-white font-bold text-2xl mb-4 tracking-wide">Available Beds</h1>
           <div className="w-full bg-blue-500/30 p-4 rounded-lg mb-4">
+          {data && data.length > 0 &&  (
             <p className="flex flex-col text-white font-medium gap-2">
-              <span className="flex justify-between"><span>ICU Beds:</span> <span className="text-yellow-300 font-semibold">5 available</span></span>
-              <span className="flex justify-between"><span>Private Beds:</span> <span className="text-yellow-300 font-semibold">12 available</span></span>
-              <span className="flex justify-between"><span>General Beds:</span> <span className="text-yellow-300 font-semibold">20 available</span></span>
+              <span className="flex justify-between"><span>ICU Beds:</span> <span className="text-yellow-300 font-semibold">{data[data.length-1]?.Icubeds} available</span></span>
+              <span className="flex justify-between"><span>Private Beds:</span> <span className="text-yellow-300 font-semibold">{data[data.length-1]?.generalbeds} available</span></span>
+              <span className="flex justify-between"><span>General Beds:</span> <span className="text-yellow-300 font-semibold">{data[data.length-1]?.privatebeds} available</span></span>
             </p>
+          )}
           </div>
         </div>
         <button onClick={updatebedsModal} className="mt-auto text-blue-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-full">Edit</button>
