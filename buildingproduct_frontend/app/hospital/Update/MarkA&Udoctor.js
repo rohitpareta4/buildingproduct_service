@@ -3,7 +3,7 @@ import { useState } from "react"
 import CloseIcon from '@mui/icons-material/Close';
 import { useMutation } from "@tanstack/react-query";
 import { useHospitalstore } from "../store/useHopitalstore";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 const Markdoctor = ({ setShowdoctorAvailability }) => {
   const [doctorname, setDoctorname] = useState("")
@@ -15,7 +15,7 @@ const Markdoctor = ({ setShowdoctorAvailability }) => {
     mutationFn:storeavailabledoctors,
     onSuccess:()=>{
       console.log('okkkieee')
-      toast.success("Doctor added successfully!");
+      // toast.success("Doctor added successfully!");
     }
   })
 
@@ -26,6 +26,9 @@ const Markdoctor = ({ setShowdoctorAvailability }) => {
       isdoctor:isdoctor
     }
     mutation.mutate(availabledoctor)
+    setTimeout(() => {
+      setShowdoctorAvailability(false)
+    }, 2000);
   }
 
   return (

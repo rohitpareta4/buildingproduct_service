@@ -2,6 +2,8 @@ import axios from 'axios'
 import { create } from 'zustand'
 import Available from '../Data/Availablecurrently'
 // import Available from '../Data/Availablecurrently'
+import toast from 'react-hot-toast'
+import AddAmbulance from '../Update/AddAmbulance'
 
 
 
@@ -44,6 +46,7 @@ export const useHospitalstore=create((set,get)=>({
         })
 
         console.log('storeavailabledoctors......',res.data)
+        toast.success("Doctor added successfully!");
         return res.data
       } catch (error) {
         console.log(error)
@@ -60,6 +63,20 @@ export const useHospitalstore=create((set,get)=>({
         console.log("res data",res.data)
         set({AvailabledoctorList:res.data})
         console.log("doctor",res.data)
+        return res.data
+      } catch (error) {
+        console.log(error)
+        return null
+      }
+    },
+
+    AddAmbulance:async(adddata)=>{
+      try {
+        // addAmbulance
+         const res=await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/hospital/addAmbulance`,adddata,{
+          withCredentials:true
+        })
+        console.log("AddAmbulance....",res.data)
         return res.data
       } catch (error) {
         console.log(error)

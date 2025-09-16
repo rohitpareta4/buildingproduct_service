@@ -7,6 +7,7 @@ import { useState,useRef } from "react";
 import { useHospitalstore } from "../store/useHopitalstore";
 import { useQuery } from "@tanstack/react-query";
 import Allavailabledoctor from "../Update/Allavailabledoctor";
+import AddAmbulance from "../Update/AddAmbulance";
 
 
 const Available = () => {
@@ -26,6 +27,7 @@ const Available = () => {
     const [showupdatebeds,setShowupdatebeds]=useState(false)
     const [showdoctorAvailability,setShowdoctorAvailability]=useState(false)
     const [showalldoctors,setShowalldoctors]=useState(false)
+    const [openAmbulance,setOpenAmbulance]=useState(false)
 
     const updatebedsModal=()=>{
         setShowupdatebeds(true)
@@ -37,6 +39,10 @@ const Available = () => {
 
     const open_view_alldoctors=()=>{
       setShowalldoctors(true)
+    }
+
+    const addAmbulance=()=>{
+        setOpenAmbulance(true)
     }
 
     const bedsref=useRef(null)
@@ -120,7 +126,14 @@ const Available = () => {
             </p>
           </div>
         </div>
-        <button className="mt-auto text-blue-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-full">Request</button>
+        <div className="flex w-full">
+        <button className="mt-auto text-blue-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-[80%]">Available Ambulance</button>
+        <button className="mt-auto text-black-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-[20%]" onClick={addAmbulance}>Add</button>
+        {openAmbulance && (
+          <AddAmbulance setOpenAmbulance={setOpenAmbulance}/>
+        )}
+        </div>
+
       </div>
     </div>
         <div className="absolute fixed top-30 right-6 flex flex-col gap-4">
