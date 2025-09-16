@@ -58,14 +58,16 @@ const Markdoctor = ({ setShowdoctorAvailability }) => {
               onChange={(e) => setIsdoctor(e.target.checked)} 
             />
           </div>
-        </form>
 
-        {/* Sticky button */}
-        <div className="absolute bottom-0 left-0 right-0 p-4">
-          <button onClick={handlesubmit} className="w-full h-10 font-bold bg-yellow-400 hover:bg-yellow-500 border-4 border-gray shadow-[6px_6px_0px_white] hover:shadow-[8px_8px_0px_white] transition-all">
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+          <button type="submit" className="w-full h-10 font-bold bg-yellow-400 hover:bg-yellow-500 border-4 border-gray shadow-[6px_6px_0px_white] hover:shadow-[8px_8px_0px_white] transition-all">
             UPDATE
           </button>
         </div>
+        </form>
+
+        {/* Sticky button */}
+        
       </div>
     </div>
   )

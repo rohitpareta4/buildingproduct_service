@@ -28,6 +28,12 @@ export const storeAvailabledoctors=async(req,res)=>{
     try {
         const {doctorname,isdoctor}=req.body
 
+        const alreadyExistdoctor=await availabledoctors.findOne({doctorname})
+        if(alreadyExistdoctor){
+            console.log("already...")
+            return res.status(401).json("already exist with this Name")
+        }
+
         const storeAvailabledoctor=await availabledoctors.create({
             doctorname,isdoctor
         })
@@ -36,4 +42,14 @@ export const storeAvailabledoctors=async(req,res)=>{
     } catch (error) {
         console.log(error)
     }
+}
+
+export const getdoctorslist=async(req,res)=>{
+  try {
+    const doctorslist=await availabledoctors.find()
+    console.log("db...............",doctorslist)
+    return res.status(200).json(doctorslist)
+  } catch (error) {
+    console.log(error)
+  }
 }

@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { create } from 'zustand'
+import Available from '../Data/Availablecurrently'
 // import Available from '../Data/Availablecurrently'
 
 
 
 export const useHospitalstore=create((set,get)=>({
     Availablebeds:[],
+    AvailabledoctorList:[],
     
 
     storeAvailablebedsdata:async(hospitalbedsdata)=>{
@@ -47,6 +49,24 @@ export const useHospitalstore=create((set,get)=>({
         console.log(error)
         return null
       }
+    },
+
+    getavailabledoctors:async()=>{
+      try {
+        const {AvailabledoctorList}=get()
+        const res=await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/hospital/getdoctorslist`,{
+          withCredentials:true
+        })
+        console.log("res data",res.data)
+        set({AvailabledoctorList:res.data})
+        console.log("doctor",res.data)
+        return res.data
+      } catch (error) {
+        console.log(error)
+        return null
+      }
     }
 }))
+
+
 
