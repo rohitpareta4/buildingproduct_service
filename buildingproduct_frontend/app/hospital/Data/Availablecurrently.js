@@ -6,6 +6,7 @@ import Markdoctor from "../Update/MarkA&Udoctor";
 import { useState,useRef } from "react";
 import { useHospitalstore } from "../store/useHopitalstore";
 import { useQuery } from "@tanstack/react-query";
+import Allavailabledoctor from "../Update/Allavailabledoctor";
 
 
 const Available = () => {
@@ -24,6 +25,7 @@ const Available = () => {
 
     const [showupdatebeds,setShowupdatebeds]=useState(false)
     const [showdoctorAvailability,setShowdoctorAvailability]=useState(false)
+    const [showalldoctors,setShowalldoctors]=useState(false)
 
     const updatebedsModal=()=>{
         setShowupdatebeds(true)
@@ -31,6 +33,10 @@ const Available = () => {
 
     const doctorAvailability=()=>{
       setShowdoctorAvailability(true)
+    }
+
+    const open_view_alldoctors=()=>{
+      setShowalldoctors(true)
     }
 
     const bedsref=useRef(null)
@@ -90,7 +96,10 @@ const Available = () => {
             </p>
           </div>
         </div>
-        <button className="mt-auto text-blue-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-full">View All</button>
+        <button className="mt-auto text-blue-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-full" onClick={open_view_alldoctors}>View All</button>
+        {showalldoctors && (
+          <Allavailabledoctor setShowalldoctors={setShowalldoctors}/>
+        )}
         <button className="mt-auto text-blue-900 bg-green-400 hover:bg-green-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-full" onClick={doctorAvailability}>Mark available & Unavailable</button>
         {showdoctorAvailability && (
           <Markdoctor setShowdoctorAvailability={setShowdoctorAvailability}/>

@@ -1,4 +1,5 @@
 import Availablebeds from "../models/hospital/availablebeds.js"
+import availabledoctors from "../models/hospital/availabledoctors.js"
 
 export const storeAvailablebeds=async(req,res)=>{
     try {
@@ -20,5 +21,19 @@ export const getAvailablebeds=async(req,res)=>{
         
     } catch (error) {
         console.log('error',error)
+    }
+}
+
+export const storeAvailabledoctors=async(req,res)=>{
+    try {
+        const {doctorname,isdoctor}=req.body
+
+        const storeAvailabledoctor=await availabledoctors.create({
+            doctorname,isdoctor
+        })
+         console.log("availabledoctors....",storeAvailabledoctor)
+        res.status(200).json(storeAvailabledoctor)
+    } catch (error) {
+        console.log(error)
     }
 }
