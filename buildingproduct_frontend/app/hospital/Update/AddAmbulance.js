@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useHospitalstore } from '../store/useHopitalstore';
+import toast from 'react-hot-toast';
 
 const AddAmbulance = ({ setOpenAmbulance }) => {
   const [drivername, setDrivername] = useState("");
@@ -33,6 +34,7 @@ const AddAmbulance = ({ setOpenAmbulance }) => {
   const mutation=useMutation({
     mutationFn:AddAmbulance,
     onSuccess:()=>{
+      toast.success("Added info Succesfully!!")
         console.log("done...")
     }
   })

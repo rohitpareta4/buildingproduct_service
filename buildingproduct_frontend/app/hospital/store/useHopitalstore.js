@@ -4,6 +4,7 @@ import Available from '../Data/Availablecurrently'
 // import Available from '../Data/Availablecurrently'
 import toast from 'react-hot-toast'
 import AddAmbulance from '../Update/AddAmbulance'
+import { Ambulance } from 'lucide-react'
 
 
 
@@ -78,6 +79,21 @@ export const useHospitalstore=create((set,get)=>({
         })
         console.log("AddAmbulance....",res.data)
         return res.data
+      } catch (error) {
+        console.log(error)
+        return null
+      }
+    },
+
+    // getAmbulanceInfo
+
+    AmbulanceList:async()=>{
+      try {
+          const res=await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/hospital/getAmbulanceInfo`,{
+          withCredentials:true
+        })
+        return res.data
+
       } catch (error) {
         console.log(error)
         return null

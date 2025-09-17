@@ -68,3 +68,12 @@ export const addAmbulance=async(req,res)=>{
         console.log("error...",error)
     }
 }
+
+export const getAmbulanceInfo=async(req,res)=>{
+    try {
+        const Ambulanceinfo=await AddAmbulance.find()
+        res.status(200).json(Ambulanceinfo)
+    } catch (error) {
+        console.log(error)
+    }
+}

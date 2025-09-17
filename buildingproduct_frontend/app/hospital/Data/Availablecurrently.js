@@ -8,11 +8,12 @@ import { useHospitalstore } from "../store/useHopitalstore";
 import { useQuery } from "@tanstack/react-query";
 import Allavailabledoctor from "../Update/Allavailabledoctor";
 import AddAmbulance from "../Update/AddAmbulance";
+import Ambulance from "../Update/Ambulance";
 
 
 const Available = () => {
 
-  const {Availablebeds,getAvailablebedsdata}=useHospitalstore()
+  const {Availablebeds,getAvailablebedsdata,AvailabledoctorList,getavailabledoctors}=useHospitalstore()
 
   console.log(Availablebeds)
 
@@ -21,13 +22,24 @@ const Available = () => {
     queryFn:getAvailablebedsdata
   })
 
-  console.log("beds data",data)
+  
+  
+
+  console.log("AvailabledoctorList......",AvailabledoctorList)
+
+  const {data:someData,isLoading}=useQuery({
+    queryKey:["doctor"],
+    queryFn:getavailabledoctors
+  })
+
+  console.log("beds data",someData)
 
 
     const [showupdatebeds,setShowupdatebeds]=useState(false)
     const [showdoctorAvailability,setShowdoctorAvailability]=useState(false)
     const [showalldoctors,setShowalldoctors]=useState(false)
     const [openAmbulance,setOpenAmbulance]=useState(false)
+    const [showambulances,setShowambulances]=useState(false)
 
     const updatebedsModal=()=>{
         setShowupdatebeds(true)
@@ -56,6 +68,10 @@ const Available = () => {
            block: "center",
         })
       }
+    }
+
+    const showambulance=()=>{
+        setShowambulances(true)
     }
 
   return (
@@ -102,7 +118,12 @@ const Available = () => {
             </p>
           </div>
         </div>
-        <button className="mt-auto text-blue-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-full" onClick={open_view_alldoctors}>View All</button>
+        {isLoading ? (
+        <button className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" onClick={open_view_alldoctors}></button>
+        ):(
+         <button className="mt-auto text-blue-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-full" onClick={open_view_alldoctors}>View All</button>
+        )}
+       
         {showalldoctors && (
           <Allavailabledoctor setShowalldoctors={setShowalldoctors}/>
         )}
@@ -113,7 +134,7 @@ const Available = () => {
       </div>
 
       {/* Available Ambulance Card */}
-      <div ref={ambulanceref} className="bg-gradient-to-br from-blue-600 to-blue-800 p-6 border-2 border-white shadow-[4px_4px_0_white]  w-2/3 flex flex-col shadow-2xl transition-all duration-300  hover:shadow-blue-900/30">
+      <div ref={ambulanceref} className="bg-gradient-to-br from-blue-600 to-blue-800 p-6 border-2 border-white shadow-[4px_4px_0_white]  w-2/3 flex flex-col shadow-2xl transition-all duration-300  hover:shadow-blue-900/30 ">
         <div className="flex flex-col items-center flex-1">
           <div className="bg-blue-500 p-4 rounded-full mb-4">
             <img className="h-16 w-16 object-contain" src="/amb.png" alt="Ambulance Icon" />
@@ -127,7 +148,12 @@ const Available = () => {
           </div>
         </div>
         <div className="flex w-full">
-        <button className="mt-auto text-blue-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-[80%]">Available Ambulance</button>
+        <button className="mt-auto text-blue-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-[80%]" onClick={showambulance}>Available Ambulance</button>
+        {
+          showambulances && (
+            <Ambulance setShowambulances={setShowambulances}/>
+          )
+        }
         <button className="mt-auto text-black-900 bg-yellow-400 hover:bg-yellow-300 px-6 py-2  font-semibold transition-colors border-4 border-balck shadow-[4px_4px_0_black] duration-200  w-[20%]" onClick={addAmbulance}>Add</button>
         {openAmbulance && (
           <AddAmbulance setOpenAmbulance={setOpenAmbulance}/>
