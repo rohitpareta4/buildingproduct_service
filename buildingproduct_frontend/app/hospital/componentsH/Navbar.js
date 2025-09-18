@@ -4,6 +4,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { me } from "../apisectionH/apiH"
 import { useState,useEffect } from "react"
+import LogoutIcon from '@mui/icons-material/Logout';
 import LocationPinIcon from '@mui/icons-material/LocationPin';
 
 const Navbar = () => {
@@ -65,7 +66,7 @@ const [isScrolled, setIsScrolled] = useState(false)
     <div className={`bg-blue-500 h-[80px] flex justify-between items-center px-8 py-4 border-4 border-white shadow-[4px_4px_0_black] sticky ${isScrolled ? "top-0" : "top-2"} z-100`}>
       {/* Logo */}
       <h1 className="tracking-wide cursor-pointer">
-        <img className="h-32 w-32" src="/healix.png" />
+        <img className="h-36 w-48" src="/new_logo.png" />
       </h1>
 
       {/* Right Section */}
@@ -90,8 +91,9 @@ const [isScrolled, setIsScrolled] = useState(false)
           </button>
           <span><LocationPinIcon/></span>
           </div>
-        <h1 className="bg-yellow-300 hover:bg-blue-400 hover:text-[white]  cursor-pointer font-semibold text-black text-sm px-3 py-2 shadow-[3px_3px_0_black] hover:bg-blue-700 transition-colors">
+        <h1 className="bg-yellow-300 hover:bg-red-500 hover:text-[white]  cursor-pointer font-semibold text-black text-sm px-3 py-2 flex gap-2 shadow-[3px_3px_0_black] hover:bg-blue-700 transition-colors">
           Logout
+          <span><LogoutIcon style={{height:"20px"}}/></span>
         </h1>
       </div>
     </div>
