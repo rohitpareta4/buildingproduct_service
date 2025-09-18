@@ -8,6 +8,10 @@ const availabledoctorschema=new mongoose.Schema({
     isdoctor:{
         type:Boolean,
         required:true
+    },
+    speciality:{
+        type:String,
+        required:true
     }
 })
 

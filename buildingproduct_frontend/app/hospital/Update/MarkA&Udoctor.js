@@ -8,6 +8,7 @@ import { useHospitalstore } from "../store/useHopitalstore";
 const Markdoctor = ({ setShowdoctorAvailability }) => {
   const [doctorname, setDoctorname] = useState("")
   const [isdoctor, setIsdoctor] = useState(false)
+  const [speciality,setSpeciality]=useState("")
 
   const {storeavailabledoctors}=useHospitalstore()
 
@@ -23,7 +24,8 @@ const Markdoctor = ({ setShowdoctorAvailability }) => {
     e.preventDefault()
     const availabledoctor={
       doctorname:doctorname,
-      isdoctor:isdoctor
+      isdoctor:isdoctor,
+      speciality:speciality
     }
     mutation.mutate(availabledoctor)
     setTimeout(() => {
@@ -50,6 +52,13 @@ const Markdoctor = ({ setShowdoctorAvailability }) => {
             placeholder="Doctor Name..." 
             value={doctorname} 
             onChange={(e) => setDoctorname(e.target.value)} 
+            className="w-full font-semibold border-4 border-black shadow-[6px_6px_0px_black] hover:shadow-[8px_8px_0px_black] p-2 bg-white focus:border-blue-500 outline-none"
+          />
+           <input 
+            type="text" 
+            placeholder="Doctor speciality..." 
+            value={speciality} 
+            onChange={(e) => setSpeciality(e.target.value)} 
             className="w-full font-semibold border-4 border-black shadow-[6px_6px_0px_black] hover:shadow-[8px_8px_0px_black] p-2 bg-white focus:border-blue-500 outline-none"
           />
           <div className="flex gap-2 items-center">
