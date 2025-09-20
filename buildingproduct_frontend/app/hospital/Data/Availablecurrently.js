@@ -199,7 +199,13 @@ const Available = () => {
              hover:shadow-blue-900/30"
 >
   {/* Bite Effect at Top-Left */}
-  <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#001f3f] rounded-full"></div>
+<div className="absolute -top-10 -left-10 w-40 h-40 bg-[#001f3f] rounded-full flex items-center justify-center">
+      <img
+        className="h-20 w-20 object-contain"
+        src="/logostethoscope.png"
+        alt="Doctors Icon"
+      />
+  </div>
 
   <div className="flex flex-col items-center flex-1">
     {/* Circle with centered stethoscope */}
@@ -257,7 +263,10 @@ const Available = () => {
 
 
       {/* Available Ambulance Card */}
-      <div ref={ambulanceref} className="bg-gradient-to-br from-blue-600 to-blue-800 p-6 border-2 border-white shadow-[4px_4px_0_white]  w-2/3 flex flex-col shadow-2xl transition-all duration-300  hover:shadow-blue-900/30 ">
+      <div ref={ambulanceref} className="relative bg-gradient-to-br from-blue-600 to-blue-800 p-6 border-2 border-white shadow-[4px_4px_0_white]  w-2/3 flex flex-col shadow-2xl transition-all duration-300  hover:shadow-blue-900/30 ">
+      <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#001f3f] rounded-full flex items-center justify-center">
+      <img className="h-20 w-20 object-contain" src="/amb.png" alt="Ambulance Icon" />
+  </div>
         <div className="flex flex-col items-center flex-1">
           <div className="bg-blue-500 p-4 rounded-full mb-4">
             <img className="h-16 w-16 object-contain" src="/amb.png" alt="Ambulance Icon" />
