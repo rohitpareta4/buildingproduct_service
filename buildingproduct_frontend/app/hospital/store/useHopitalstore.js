@@ -5,6 +5,7 @@ import Available from '../Data/Availablecurrently'
 import toast from 'react-hot-toast'
 import AddAmbulance from '../Update/AddAmbulance'
 import { Ambulance } from 'lucide-react'
+import Editprofile from '../auth/Editprofile/page'
 
 
 
@@ -97,6 +98,21 @@ export const useHospitalstore=create((set,get)=>({
       } catch (error) {
         console.log(error)
         return null
+      }
+    },
+
+      Editprofile:async(editdata)=>{
+      try {
+        console.log("data.........",editdata)
+        const res=await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/editprofile`,editdata,{withCredentials:true,
+            headers:{ 
+        'Content-Type': 'multipart/form-data',
+      }
+        })
+        
+        return res.data
+      } catch (error) {
+        console.log(error)
       }
     }
 }))

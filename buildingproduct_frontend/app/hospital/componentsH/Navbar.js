@@ -91,7 +91,7 @@ const [isScrolled, setIsScrolled] = useState(false)
             onClick={handleGetLocation}
             className=""
           >
-            Get My Location
+           Set Hospital Location
           </button>
           <span><LocationPinIcon/></span>
           </div>

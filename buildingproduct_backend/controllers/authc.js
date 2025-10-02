@@ -177,3 +177,28 @@ export const userme=async(req,res)=>{
     console.log(error)
   }
 }
+
+export const editprofile=async(req,res)=>{
+  try {
+    console.log("edit.......",req.body)
+    const userId=req.user._id;
+    const updateprofile={}
+    if(req.body.fullname){
+      updateprofile.fullname=req.body.fullname
+    }
+    if(req.file && req.file.filename){
+      updateprofile.profilepic=req.file.filename
+    }
+    console.log("profile_pic.......",req.file.filename)
+    // if(!profilepic){
+    //   res.status(400).json("profile-pic is needed....")
+    // }
+  const editprofiles=await adminH.findByIdAndUpdate(userId,updateprofile,{new:true})
+    console.log("Add_bio",editprofiles)
+        res.status(200).json(editprofiles)
+  
+
+  } catch (error) {
+    console.log(error)
+  }
+}

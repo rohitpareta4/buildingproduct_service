@@ -12,4 +12,5 @@ router.get('/getdoctorslist',protectHospitalRoute,getdoctorslist)
 router.post('/addAmbulance',protectHospitalRoute,addAmbulance)
 router.get('/getAmbulanceInfo',protectHospitalRoute,getAmbulanceInfo)
 
+
 export default router

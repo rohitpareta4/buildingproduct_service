@@ -20,6 +20,7 @@
     "from": "^0.1.7",
     "import": "^0.0.6",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.18.0"
+    "mongoose": "^8.18.0",
+    "multer": "^2.0.2"
   }
 }

@@ -5,9 +5,15 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import auth from './routes/auth.js'
 import hospital from './routes/hospital.js'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
+const __filename=fileURLToPath(import.meta.url)
+const __dirname=path.dirname(__filename)
 
 const app=express()
+
+
 
 dotenv.config()
 
@@ -18,6 +24,7 @@ app.use(cors(
   credentials: true
     }
 ))
+app.use('/public',express.static(path.join(__dirname,"public")))
 
 app.use(express.json())
 app.use(cookieParser())
