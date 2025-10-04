@@ -3,10 +3,18 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { userprofile } from "../admin/apisection/api";
 import { me } from "../hospital/apisectionH/apiH";
+import { useHospitalstore } from "../hospital/store/useHopitalstore";
 // 001a66
 const Chooserole = () => {
 
    const router=useRouter();
+
+   const {getHospitalInfo}=useHospitalstore()
+
+   const {data:getinfo}=useQuery({
+    queryKey:['info'],
+    queryFn:getHospitalInfo
+   })
 
   const {data:admin,isLoading}=useQuery({
     queryKey:["admin"],
@@ -37,11 +45,14 @@ const Chooserole = () => {
   }
 
   const navigatetohospital=()=>{
-     if(hospital && hospital?._id){
-  router.push('/hospital/homepageH')
+     if(!hospital || !hospital?._id){
+      router.push('/hospital/auth/signup')
+    }
+   else if(!getinfo || !getinfo._id){
+      router.push('/hospital/Hospitalinfo')
     }
     else{
-  router.push('/hospital/auth/signup')
+       router.push('/hospital/homepageH')
     }
   }
 

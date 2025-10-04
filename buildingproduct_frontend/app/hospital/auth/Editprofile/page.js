@@ -3,6 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useHospitalstore } from '../../store/useHopitalstore';
+import toast from 'react-hot-toast';
 
 
 const Editprofile=({setEditopenbox,setStoredata})=>{
@@ -18,6 +19,7 @@ const Editprofile=({setEditopenbox,setStoredata})=>{
       mutationFn:Editprofile,
       onSuccess:(data)=>{
         setStoredata(data)
+        toast.success("profile updated succesfully...")
         // console.log("done_data",data)
         // console.log("done...")
       }
@@ -28,7 +30,10 @@ const Editprofile=({setEditopenbox,setStoredata})=>{
       const formdata=new FormData()
       formdata.append('fullname',fullname)
       if(profilepic) formdata.append('profilepic',profilepic)
-      mutation.mutate(formdata)   
+      mutation.mutate(formdata)  
+      setTimeout(() => {
+        setEditopenbox(false)
+      }, 1500);
     }
 
     return(

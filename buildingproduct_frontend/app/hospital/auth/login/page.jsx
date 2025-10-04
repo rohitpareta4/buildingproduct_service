@@ -6,6 +6,7 @@
     import { useMutation } from "@tanstack/react-query"
     // import { login } from "../../apisection/api"
     import { login } from "../../apisectionH/apiH"
+    
 
     const Login = () => {
       const [email, setEmail] = useState('')
@@ -15,7 +16,7 @@
       const mutation=useMutation({
         mutationFn:login,
         onSuccess:()=>{
-          alert('hey')
+          router.push('/hospital/Hospitalinfo')
           console.log('done...');
         }
       })
@@ -99,6 +100,12 @@
                 className="text-blue-600 underline hover:text-red-600 transition-colors duration-200 font-bold"
               >
                 signup
+              </button>
+               <button 
+                onClick={() => router.push('/hospital/Hospitalinfo')} 
+                className="text-blue-600 underline hover:text-red-600 transition-colors duration-200 font-bold"
+              >
+                Info
               </button>
             </p>
           </form>

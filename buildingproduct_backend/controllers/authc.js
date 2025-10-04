@@ -3,6 +3,8 @@ import bcrypt, { compareSync } from "bcryptjs"
 import { generatetoken,generatetokenhospital } from "../lib/utils.js"
 import adminH from "../models/Hospitaladmin.js"
 // import { use } from "react"
+import hospitalInfo from "../models/hospital/hospitalinfo.js"
+
 
 export const signup=async(req,res)=>{
   try {
@@ -202,3 +204,42 @@ export const editprofile=async(req,res)=>{
     console.log(error)
   }
 }
+
+export const hospital_Info=async(req,res)=>{
+  try {
+    const {hospitalname,hospitaladdress,phonenumber,email}=req.body
+
+    const user=await adminH.findOne({email})
+
+     if (!user) {
+      return res.status(404).json({ message: "Admin not found" });
+    }
+
+    // const ispassword=await bcrypt.compare(password,user.password)
+
+    // if(!ispassword){
+    //   res.status(401).json("password is Incorrect...")
+    // }
+    
+    const hospitalinfo=await hospitalInfo.create({
+      hospitalname,hospitaladdress,phonenumber,adminId:user._id
+    })
+       console.log("hospitalinfo..............",hospitalinfo)
+    res.status(200).json(hospitalinfo)
+  
+  
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const get_hospitalInfo=async(req,res)=>{
+  try {
+    const get_info=await hospitalInfo.findOne({adminId:req.user._id})
+    console.log("get_info........",get_info)
+    res.status(200).json(get_info)
+  } catch (error) {
+    
+  }
+}
+

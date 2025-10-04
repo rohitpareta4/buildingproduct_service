@@ -31,7 +31,7 @@ import { Phone, Mail, MapPin } from "lucide-react"
 const Footer = () => {
   return (
     <div className="">
-          <div className="max-w-7xl mx-auto flex  justify-center gap-6 px-6 py-6 border-t border-blue-400">
+          <div className="max-w-7xl mx-auto mt-10 flex  justify-center gap-6 px-6 py-6 ">
         <img className="h-40 w-80 object-contain" src="/footerpic_1.png" alt="Partner 1" />
         <img className="h-40 w-80 object-contain" src="/footerpic_2.png" alt="Partner 2" />
         <img className="h-40 w-80 object-contain" src="/footerpic_3.png" alt="Partner 3" />

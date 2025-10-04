@@ -6,19 +6,27 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useMutation } from "@tanstack/react-query";
 import { useHospitalstore } from "../store/useHopitalstore";
 import { useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const Updatebeds = ({setShowupdatebeds}) => {
   const [icubeds, setIcuBeds] = useState("")
   const [generalbeds, setGeneralBeds] = useState("")
   const [privatebeds, setPrivateBeds] = useState("")
-  const [Hospitalname,setHospitalName]=useState("")
-  const [Hospitaladdress,setHospitalAddress]=useState("")
+  // const [Hospitalname,setHospitalName]=useState("")
+  // const [Hospitaladdress,setHospitalAddress]=useState("")
 
-  const {storeAvailablebedsdata}=useHospitalstore()
+  const {storeAvailablebedsdata,getHospitalInfo}=useHospitalstore()
 
   const queryClient=useQueryClient()
 
   console.log("storeAvailablebedsdata........",storeAvailablebedsdata)
+
+  const {data}=useQuery({
+    queryKey:['info'],
+    queryFn:getHospitalInfo
+  })
+
+  console.log("data.......of info",data)
 
   const mutation=useMutation({
     mutationFn:storeAvailablebedsdata,
@@ -31,8 +39,8 @@ const Updatebeds = ({setShowupdatebeds}) => {
   const handlesubmit = (e) => {
     e.preventDefault()
     const hospitalbedsdata={
-         HospitalName:Hospitalname,
-         HospitalAddress:Hospitaladdress,
+        //  HospitalName:Hospitalname,
+        //  HospitalAddress:Hospitaladdress,
          icubeds:icubeds,
          generalbeds:generalbeds,
          privatebeds:privatebeds
@@ -57,40 +65,18 @@ const Updatebeds = ({setShowupdatebeds}) => {
         <form className="p-6 flex flex-col justify-center items-center gap-3" onSubmit={handlesubmit}>
 
 <div className="flex justify-between w-full gap-2">
-         <div className="w-full">
-  <label htmlFor="hospital" className="block text-white font-bold mb-1">
-    Select Hospital:
-  </label>
-  <select
-    id="hospital"
-    name="hospital"
-    value={Hospitalname}
-    onChange={(e)=>setHospitalName(e.target.value)}
-    className="w-full border-4 border-black shadow-[6px_6px_0px_black] hover:shadow-[8px_8px_0px_black] bg-white p-2 font-semibold focus:border-blue-500 outline-none cursor-pointer"
-  >
-    <option value="">-- Choose your hospital Name --</option>
-    <option value="apollo">Apollo Hospital</option>
-    <option value="fortis">Fortis Hospital</option>
-    <option value="aiims">AIIMS</option>
-    <option value="medanta">Medanta</option>
-  </select>
+         <div className="w-full text-white font-semibold">
+         <p>Hospital:</p>
+         <h1>{data?.hospitalname}</h1>
 </div>
 
-<div className="w-full">
-  <label htmlFor="address" className="block text-white font-bold mb-1">
-    Select Address:
-  </label>
-  <select
-    id="address"
-    name="address"
-    value={Hospitaladdress}
-    onChange={(e)=>setHospitalAddress(e.target.value)}
-    className="w-full border-4 border-black shadow-[6px_6px_0px_black] hover:shadow-[8px_8px_0px_black] bg-white p-2 font-semibold focus:border-blue-500 outline-none cursor-pointer"
-  >
-    <option value="">-- Choose your hospital address --</option>
-    <option value="kota">Kota Road, Baran</option>
-    <option value="fatak">Fatak ke Samne</option>
-  </select>
+<div className="w-full text-white font-semibold">
+    <p>Address:</p>
+    <h1>{data?.hospitaladdress}</h1>
+</div>
+<div className="w-full text-white font-semibold">
+    <p>Phone:</p>
+    <h1>{data?.phonenumber}</h1>
 </div>
 </div>
 
