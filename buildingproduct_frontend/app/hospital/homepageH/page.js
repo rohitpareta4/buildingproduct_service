@@ -4,7 +4,7 @@ import Available from "../Data/Availablecurrently"
 
 const Homepage=()=>{
     return(
-        <div>
+        <div className="p-2">
            <Navbar/>
            <Available/>
            <Footer/>

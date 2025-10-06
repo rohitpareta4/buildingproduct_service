@@ -130,6 +130,7 @@ export const useHospitalstore=create((set,get)=>({
         const res=await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/getHospitalinfo`,{withCredentials:true})
         return res.data
       } catch (error) {
+        return null
         console.log(error)
       }
     }

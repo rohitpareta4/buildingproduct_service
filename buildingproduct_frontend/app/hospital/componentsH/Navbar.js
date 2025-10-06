@@ -67,7 +67,7 @@ const [isScrolled, setIsScrolled] = useState(false)
 
 
   return (
-    <div className={`bg-blue-500 h-[80px] flex justify-between items-center px-8 py-4 border-4 border-white shadow-[4px_4px_0_black] sticky ${isScrolled ? "top-0" : "top-2"} z-100`}>
+    <div className={`bg-blue-500 h-[80px] flex justify-between items-center px-8 py-4 border-4 border-white shadow-[4px_4px_0_black] sticky ${isScrolled ? "top-0" : "top-2"} z-100 `}>
       {/* Logo */}
       <h1 className="tracking-wide cursor-pointer">
         <img className="h-36 w-48" src="/new_logo.png" />

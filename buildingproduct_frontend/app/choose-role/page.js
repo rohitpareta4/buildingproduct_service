@@ -56,6 +56,10 @@ const Chooserole = () => {
     }
   }
 
+  const navigatetouserpanel=()=>{
+    router.push('/user/askai')
+  }
+
   
 
 
@@ -81,6 +85,13 @@ const Chooserole = () => {
           className="px-8 py-5 bg-green-600 cursor-pointer text-white border-2 border-black hover:border-white shadow-2xl  hover:bg-green-700 hover:scale-105 transform transition-all duration-300"
         >
           🏥 Hospital
+        </button>
+
+          <button
+          onClick={navigatetouserpanel}
+          className="px-8 py-5 bg-yellow-600 cursor-pointer text-white border-2 border-black hover:border-white shadow-2xl  hover:bg-green-700 hover:scale-105 transform transition-all duration-300"
+        >
+          🏥 User
         </button>
       </div>
     </div>
