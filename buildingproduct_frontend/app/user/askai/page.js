@@ -1,4 +1,6 @@
 import Sidebar from "../componentsU/sidebar/page"
+import NavbarU from "../componentsU/NavbarU/page"
+
 const askai=()=>{
     return(
         <div className="grid grid-cols-4">
@@ -6,7 +8,7 @@ const askai=()=>{
             <Sidebar/>
           </div>
           <div className="bg-[#181818] col-span-3">
-            hello
+            <NavbarU/>
           </div>
         </div>
     )

@@ -4,12 +4,25 @@ import SearchIcon from '@mui/icons-material/Search';
 import PhonelinkEraseIcon from "@mui/icons-material/PhonelinkErase";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { useState } from "react";
 
 const Sidebar = () => {
+
+  const [isslide,setIsslide]=useState(false)
+
+  const slidetoleft=()=>{
+    setIsslide(prev => !prev)
+  }
+
   return (
     <motion.div
-      initial={{ x: -80, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
+      initial={{ 
+        x: -80, opacity: 0
+       }}
+       animate={{
+       x: isslide ? -300 : 0, // slides left when true, visible when false
+       opacity: 1,
+  }}
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="h-screen  bg-[#181818] shadow-lg flex flex-col justify-between p-2 border-r border-gray-700"
     >
@@ -23,6 +36,7 @@ const Sidebar = () => {
             // style={{ width: "48px", height: "48px" }}
           />
           <PhonelinkEraseIcon
+             onClick={slidetoleft}
             style={{ height:"36px", width:"36px" }}
             className="text-white cursor-pointer hover:text-gray-300 transition"
           />
