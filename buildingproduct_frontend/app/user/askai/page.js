@@ -1,5 +1,7 @@
 import Sidebar from "../componentsU/sidebar/page"
 import NavbarU from "../componentsU/NavbarU/page"
+import Chatcontainer from "../chat/chatcontainer"
+import Chatinput from "../chat/chatinput"
 
 const askai=()=>{
     return(
@@ -9,6 +11,8 @@ const askai=()=>{
           </div>
           <div className="bg-[#181818] col-span-3">
             <NavbarU/>
+            <Chatcontainer/>
+            <Chatinput/>
           </div>
         </div>
     )
