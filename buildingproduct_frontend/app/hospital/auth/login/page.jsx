@@ -16,7 +16,7 @@
       const mutation=useMutation({
         mutationFn:login,
         onSuccess:()=>{
-          router.push('/hospital/Hospitalinfo')
+          // router.push('/hospital/Hospitalinfo')
           console.log('done...');
         }
       })

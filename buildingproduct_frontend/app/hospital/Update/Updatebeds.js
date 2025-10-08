@@ -39,8 +39,8 @@ const Updatebeds = ({setShowupdatebeds}) => {
   const handlesubmit = (e) => {
     e.preventDefault()
     const hospitalbedsdata={
-        //  HospitalName:Hospitalname,
-        //  HospitalAddress:Hospitaladdress,
+         HospitalName:data?.hospitalname,
+         HospitalAddress:data?.hospitaladdress,
          icubeds:icubeds,
          generalbeds:generalbeds,
          privatebeds:privatebeds

@@ -133,6 +133,16 @@ export const useHospitalstore=create((set,get)=>({
         return null
         console.log(error)
       }
+    },
+
+    getinfoforUser:async()=>{
+      try {
+        const res=await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/user/getuserinfo`,{withCredentials:true})
+        return res.data
+      } catch (error) {
+        return  null
+        console.log(error)
+      }
     }
 }))
 

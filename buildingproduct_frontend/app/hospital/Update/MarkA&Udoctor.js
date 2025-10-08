@@ -3,6 +3,7 @@ import { useState } from "react"
 import CloseIcon from '@mui/icons-material/Close';
 import { useMutation } from "@tanstack/react-query";
 import { useHospitalstore } from "../store/useHopitalstore";
+import { useQuery } from "@tanstack/react-query";
 // import toast from "react-hot-toast";
 
 const Markdoctor = ({ setShowdoctorAvailability }) => {
@@ -10,7 +11,12 @@ const Markdoctor = ({ setShowdoctorAvailability }) => {
   const [isdoctor, setIsdoctor] = useState(false)
   const [speciality,setSpeciality]=useState("")
 
-  const {storeavailabledoctors}=useHospitalstore()
+  const {storeavailabledoctors,getHospitalInfo}=useHospitalstore()
+
+  const {data}=useQuery({
+      queryKey:['info'],
+      queryFn:getHospitalInfo
+    })
 
   const mutation=useMutation({
     mutationFn:storeavailabledoctors,
@@ -23,6 +29,8 @@ const Markdoctor = ({ setShowdoctorAvailability }) => {
   const handlesubmit=(e)=>{
     e.preventDefault()
     const availabledoctor={
+      HospitalName:data?.hospitalname,
+         HospitalAddress:data?.hospitaladdress,
       doctorname:doctorname,
       isdoctor:isdoctor,
       speciality:speciality

@@ -27,7 +27,7 @@ export const getAvailablebeds=async(req,res)=>{
 
 export const storeAvailabledoctors=async(req,res)=>{
     try {
-        const {doctorname,isdoctor,speciality}=req.body
+        const {HospitalName,HospitalAddress,doctorname,isdoctor,speciality}=req.body
 
         const alreadyExistdoctor=await availabledoctors.findOne({doctorname})
         if(alreadyExistdoctor){
@@ -36,7 +36,7 @@ export const storeAvailabledoctors=async(req,res)=>{
         }
 
         const storeAvailabledoctor=await availabledoctors.create({
-            doctorname,isdoctor,speciality
+            HospitalName,HospitalAddress,doctorname,isdoctor,speciality
         })
          console.log("availabledoctors....",storeAvailabledoctor)
         res.status(200).json(storeAvailabledoctor)

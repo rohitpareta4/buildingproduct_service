@@ -12,7 +12,12 @@ const Chooserole = () => {
 
    const router=useRouter();
 
-   const {getHospitalInfo}=useHospitalstore()
+   const {getHospitalInfo,getinfoforUser}=useHospitalstore()
+
+   const {data:getinfoforUserdata}=useQuery({
+    queryKey:['hospital'],
+    queryFn:getinfoforUser
+   })
 
    const {data:getinfo}=useQuery({
     queryKey:['info'],

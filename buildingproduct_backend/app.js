@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import auth from './routes/auth.js'
 import hospital from './routes/hospital.js'
+import user from './routes/user.js'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -35,6 +36,7 @@ app.get('/',(req,res)=>{
 
 app.use('/api/auth',auth)
 app.use('/api/hospital',hospital)
+app.use('/api/user',user)
 
 const port=process.env.PORT
 

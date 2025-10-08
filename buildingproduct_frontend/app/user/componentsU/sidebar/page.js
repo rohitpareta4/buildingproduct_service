@@ -6,12 +6,11 @@ import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useState } from "react";
 
-const Sidebar = ({expand,setExpand,isslide,setIsslide}) => {
+const Sidebar = ({isslide,setIsslide}) => {
 
   // const [isslide,setIsslide]=useState(false)
 
   const slidetoleft=()=>{
-    setExpand(prev => !prev)
     setIsslide(prev => !prev)
   }
 
