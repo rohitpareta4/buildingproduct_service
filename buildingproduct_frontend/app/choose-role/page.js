@@ -4,8 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import { userprofile } from "../admin/apisection/api";
 import { me } from "../hospital/apisectionH/apiH";
 import { useHospitalstore } from "../hospital/store/useHopitalstore";
+import { useState } from "react";
 // 001a66
 const Chooserole = () => {
+
+  const [isload,setIsload]=useState(false)
 
    const router=useRouter();
 
@@ -57,7 +60,11 @@ const Chooserole = () => {
   }
 
   const navigatetouserpanel=()=>{
-    router.push('/user/askai')
+    setIsload(true)
+    // router.push('/user/askai')
+     setTimeout(() => {
+    router.push('/user/askai');
+  }, 800); // show loader for a moment
   }
 
   
@@ -69,7 +76,7 @@ const Chooserole = () => {
     <h1 className="text-3xl font-bold text-white mb-6 drop-shadow-[0_0_10px_#ffffff]">
       Select Your Role
     </h1>
-
+{!isload && (
       <div className="flex gap-8">
         {/* Admin Button */}
         <button
@@ -93,7 +100,23 @@ const Chooserole = () => {
         >
           🏥 User
         </button>
+
       </div>
+      )}
+
+      {isload && (
+  <div className="absolute inset-0 flex items-center justify-center bg-black">
+    <video
+      src="/loaading.mp4"
+      autoPlay
+      muted
+      loop
+      className="w-full h-full object-cover bg-[black]"
+    />
+  </div>
+)}
+
+    
     </div>
     
   );

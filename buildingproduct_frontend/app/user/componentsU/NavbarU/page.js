@@ -1,9 +1,10 @@
 "use client";
 import ClearAllIcon from "@mui/icons-material/ClearAll";
 
-const NavbarU = () => {
+const NavbarU = ({expand}) => {
   return (
-    <div className="bg-[#212121] h-16 flex justify-between items-center p-4 shadow-2xl border-b border-gray-700">
+    <div className={`bg-[#212121] ${expand?'w-full':''}  h-16 flex justify-between items-center p-4 shadow-2xl border-b border-gray-700`}>
+      
       <div className="flex items-center">
         <img className="h-24 w-24 mt-2" src="/dna.png" />
         <h2 className="text-white text-xl">healix</h2>
@@ -16,6 +17,7 @@ const NavbarU = () => {
           Delete
         </span>
       </div>
+      
     </div>
   );
 };
