@@ -27,7 +27,9 @@ const availablebedschema=new mongoose.Schema({
 
     }
 
-})
+},
+{ timestamps: true }
+)
 
 const Availablebeds=mongoose.model('bed',availablebedschema)
 export default Availablebeds

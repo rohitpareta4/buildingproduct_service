@@ -13,7 +13,31 @@ const hospitalinfo=new mongoose.Schema({
         type:String,
         required:true
     },
-    adminId:{
+    city:{
+        type:String,
+        required:true
+    },
+    state:{
+        type:String,
+        required:true
+    },
+    hospitalType:{
+        type:String,
+        required:true
+    },
+    services:{
+        type:[String],
+        default:[]
+    },
+     ambulanceAvailable: {
+    type: Boolean,
+    default: false,
+    },
+     emergencyAvailable: {
+    type: Boolean,
+    default: false,
+     },
+      adminId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"adminH",
         required:true
