@@ -4,16 +4,32 @@ import SearchIcon from '@mui/icons-material/Search';
 import PhonelinkEraseIcon from "@mui/icons-material/PhonelinkErase";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useHospitalstore } from "@/app/hospital/store/useHopitalstore";
+import ClearIcon from '@mui/icons-material/Clear';
+import { useQuery } from "@tanstack/react-query";
+// import { useState } from "react";
 
-const Sidebar = ({isslide,setIsslide}) => {
+const Sidebar = ({isslide,setIsslide,input}) => {
 
-  // const [isslide,setIsslide]=useState(false)
+  
+  const { responses,get_bot_response,deletechat } = useHospitalstore()
+
+  console.log("...............",responses)
 
   const slidetoleft=()=>{
     setIsslide(prev => !prev)
   }
 
+  const deletechatfromlist=(id)=>{
+    console.log(id)
+     deletechat(id)
+  }
+
+   const {data}=useQuery({
+     queryKey:["bot"],
+     queryFn:get_bot_response
+   })
 
 
   return (
@@ -64,6 +80,25 @@ const Sidebar = ({isslide,setIsslide}) => {
           <span className="tracking-wide text-sm text-gray-400 font-semibold">
             Chats
           </span>
+          <div className="mt-2  flex flex-col gap-4">
+              {responses
+  ?.filter(item => item.sender === "bot") // show only user messages
+  .map((item, i) => (
+    <div
+      key={i}
+      className="hover:bg-[#242424] h-10 p-2 rounded-lg flex justify-between cursor-pointer group"
+    >
+      <h2 className="text-white text-sm truncate">{item.tit}</h2>
+      <span>
+        <ClearIcon
+          onClick={() => deletechatfromlist(item.id)}
+          className="text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer"
+        />
+      </span>
+    </div>
+  ))}
+
+          </div>
         </div>
       </div>
 
@@ -81,3 +116,11 @@ const Sidebar = ({isslide,setIsslide}) => {
 
 export default Sidebar;
 
+
+  // {localchats?.map((item,i)=>(
+  //             <div className="bg-[#242424] h-10 p-2 rounded-lg flex justify-between group" key={i}>
+  //               {/* {item.sender==="user" && ( */}
+  //               <h2 className="text-white">{item.userInput}</h2>
+  //               <span><ClearIcon onClick={()=>deletechatfromlist(item._id)} className="text-gray-400 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer"/></span>
+  //             </div>
+  //           ))}

@@ -23,7 +23,9 @@ const availabledoctorschema=new mongoose.Schema({
         type:String,
         required:true
     }
-})
+},
+{ timestamps: true }
+)
 
 const availabledoctors=mongoose.model('doctor',availabledoctorschema)
 export default availabledoctors;

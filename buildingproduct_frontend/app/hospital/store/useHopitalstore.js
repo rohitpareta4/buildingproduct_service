@@ -6,12 +6,14 @@ import toast from 'react-hot-toast'
 import AddAmbulance from '../Update/AddAmbulance'
 import { Ambulance, Hospital } from 'lucide-react'
 import Editprofile from '../auth/Editprofile/page'
+// import { v4 as uuidv4 } from "uuid";
 
 
 
 export const useHospitalstore=create((set,get)=>({
     Availablebeds:[],
     AvailabledoctorList:[],
+    responses:[],
     
 
     storeAvailablebedsdata:async(hospitalbedsdata)=>{
@@ -141,6 +143,55 @@ export const useHospitalstore=create((set,get)=>({
         return res.data
       } catch (error) {
         return  null
+        console.log(error)
+      }
+    },
+    userqueries:async(user_query)=>{
+      try {
+        const res=await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/userquery`,user_query,{withCredentials:true})
+         
+        set((state) => ({
+        responses: [...state.responses, { id:res.data._id,sender: 'user', text: res.data.userInput }]
+    }))
+        console.log("**************************",res.data)
+           set((state) => ({
+        responses: [...state.responses, { id:res.data._id,sender: 'bot', text: res.data.botresponse, tit:res.data.title }]
+    }))
+        return res.data
+      } catch (error) {
+        return null
+        console.log(error)
+      }
+    },
+    get_bot_response:async()=>{
+      try {
+        // getbotresponse
+        const {responses}=get()
+        const res=await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/user/getbotresponse`,{withCredentials:true})
+          const formatted = res.data.flatMap(item => [
+      { id:item._id,sender: "user", text: item.userInput },
+      { id:item._id,sender: "bot", text: item.botresponse,tit:item.title }
+    ]);
+
+    // Replace all responses with what we got from DB
+    set({ responses: formatted });
+
+        return res.data
+      } catch (error) {
+        return null
+        console.log(error)
+      }
+    },
+    deletechat:async(Id)=>{
+      try {
+        const {responses}=get()
+            const updatedResponses = responses.filter(msg => msg.id !== Id);
+            set({ responses: updatedResponses });
+        const res=await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/deletethechat/${Id}`,{},{withCredentials:true})
+        console.log("res..........",res.data)
+     
+        return res.data
+      } catch (error) {
         console.log(error)
       }
     }

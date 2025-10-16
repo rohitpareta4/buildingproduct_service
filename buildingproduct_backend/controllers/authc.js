@@ -207,7 +207,7 @@ export const editprofile=async(req,res)=>{
 
 export const hospital_Info=async(req,res)=>{
   try {
-    const {hospitalname,hospitaladdress,phonenumber,email}=req.body
+    const {hospitalname,hospitaladdress,phonenumber,email,city,state,hospitalType,services,ambulanceAvailable,emergencyAvailable}=req.body
 
     const user=await adminH.findOne({email})
 
@@ -222,7 +222,7 @@ export const hospital_Info=async(req,res)=>{
     // }
     
     const hospitalinfo=await hospitalInfo.create({
-      hospitalname,hospitaladdress,phonenumber,adminId:user._id
+      hospitalname,hospitaladdress,phonenumber,adminId:user._id,city,state,hospitalType,services,ambulanceAvailable,emergencyAvailable
     })
        console.log("hospitalinfo..............",hospitalinfo)
     res.status(200).json(hospitalinfo)

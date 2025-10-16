@@ -12,6 +12,8 @@ const askai=()=>{
 
   // const [expand,setExpand]=useState(false)
   const [isslide,setIsslide]=useState(false)
+   const [input,setInput]=useState("")
+   const [load,setLoad]=useState(false)
   // expand={expand} setExpand={setExpand} 
 
     return(
@@ -22,7 +24,8 @@ const askai=()=>{
           {!isslide && (
           <div className={` ${isslide?'w-1/12':'w-1/4'} transition-[width] duration-300 ease-in-out bg-[#181818]`}>
             <Sidebar 
-            setIsslide={setIsslide} isslide={isslide}/>
+
+            setIsslide={setIsslide} isslide={isslide} input={input}/>
           </div>
           )}
         {isslide && (
@@ -36,8 +39,8 @@ const askai=()=>{
           {/* <div className={`bg-[#181818] col-span-3`}> */}
           <div className={`${isslide?'w-11/12':'w-3/4'}`}>
             <NavbarU/>
-            <Chatcontainer/>
-            <Chatinput/>
+            <Chatcontainer input={input} load={load} setLoad={setLoad}/>
+            <Chatinput input={input} setInput={setInput} load={load} setLoad={setLoad}/>
           </div>
         </div>
  
