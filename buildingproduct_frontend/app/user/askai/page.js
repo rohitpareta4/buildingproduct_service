@@ -8,7 +8,7 @@ import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
 
 
 
-const askai=()=>{
+export default function Askai(){
 
   // const [expand,setExpand]=useState(false)
   const [isslide,setIsslide]=useState(false)
@@ -46,6 +46,6 @@ const askai=()=>{
  
     )
 }
-export default askai
+// export default askai
 
 
