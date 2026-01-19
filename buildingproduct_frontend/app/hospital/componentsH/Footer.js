@@ -27,6 +27,8 @@
 "use client"
 
 import { Phone, Mail, MapPin } from "lucide-react"
+import Link from "next/link"
+
 
 const Footer = () => {
   return (
@@ -53,10 +55,10 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
-            <li><a href="/" className="hover:text-yellow-300 transition-colors">Home</a></li>
-            <li><a href="/beds" className="hover:text-yellow-300 transition-colors">Available Beds</a></li>
-            <li><a href="/doctors" className="hover:text-yellow-300 transition-colors">Doctors</a></li>
-            <li><a href="/ambulance" className="hover:text-yellow-300 transition-colors">Ambulance</a></li>
+            <li><Link href="/" className="hover:text-yellow-300 transition-colors">Home</Link></li>
+            <li><Link href="/beds" className="hover:text-yellow-300 transition-colors">Available Beds</Link></li>
+            <li><Link href="/doctors" className="hover:text-yellow-300 transition-colors">Doctors</Link></li>
+            <li><Link href="/ambulance" className="hover:text-yellow-300 transition-colors">Ambulance</Link></li>
           </ul>
         </div>
 
