@@ -47,7 +47,7 @@ const Markdoctor = ({ setShowdoctorAvailability }) => {
         
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
-          <h2 className="text-xl font-bold text-white">Doctor's Availability</h2>
+          <h2 className="text-xl font-bold text-white">{"Doctor's Availability"}</h2>
           <span>
             <CloseIcon onClick={() => setShowdoctorAvailability(false)} className="text-white cursor-pointer" />
           </span>
