@@ -16,6 +16,14 @@ export default function Askai(){
    const [load,setLoad]=useState(false)
   // expand={expand} setExpand={setExpand} 
 
+   const [vibrate, setVibrate] = useState(false);
+
+  // 🌀 Trigger vibration for 0.5s on button click
+  const handleVibrate = () => {
+    setVibrate(true);
+    setTimeout(() => setVibrate(false), 1000); // stop after 0.5 seconds
+  };
+
     return(
         // <div className={`grid grid-cols-4`}>
         <div className={`flex w-full`}>
@@ -25,7 +33,7 @@ export default function Askai(){
           <div className={` ${isslide?'w-1/12':'w-1/4'} transition-[width] duration-300 ease-in-out bg-[#181818]`}>
             <Sidebar 
 
-            setIsslide={setIsslide} isslide={isslide} input={input}/>
+          vibrate={vibrate}  setIsslide={setIsslide} isslide={isslide} input={input}/>
           </div>
           )}
         {isslide && (
@@ -38,9 +46,9 @@ export default function Askai(){
 
           {/* <div className={`bg-[#181818] col-span-3`}> */}
           <div className={`${isslide?'w-11/12':'w-3/4'}`}>
-            <NavbarU/>
+            <NavbarU vibrate={vibrate}/>
             <Chatcontainer input={input} load={load} setLoad={setLoad}/>
-            <Chatinput input={input} setInput={setInput} load={load} setLoad={setLoad}/>
+            <Chatinput handleVibrate={handleVibrate} input={input} setInput={setInput} load={load} setLoad={setLoad}/>
           </div>
         </div>
  

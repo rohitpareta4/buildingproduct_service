@@ -10,7 +10,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { useQuery } from "@tanstack/react-query";
 // import { useState } from "react";
 
-const Sidebar = ({isslide,setIsslide,input}) => {
+const Sidebar = ({vibrate,isslide,setIsslide,input}) => {
 
   
   const { responses,get_bot_response,deletechat } = useHospitalstore()
@@ -31,7 +31,7 @@ const Sidebar = ({isslide,setIsslide,input}) => {
      queryFn:get_bot_response
    })
 
-
+//  key={vibrate ? "vibrating" : "still"}  className={`h-24 w-24 mt-2 ${vibrate ? "vibrate" : ""}`}
   return (
     <motion.div
       initial={{ 
@@ -48,7 +48,7 @@ const Sidebar = ({isslide,setIsslide,input}) => {
       <div>
         <div className="flex justify-between items-center">
           <img
-            className="object-contain h-28 w-28 -ml-6 mt-2"
+            className={`object-contain h-28 w-28 -ml-6 mt-2`}
             src="/dna.png"
             alt="DNA Logo"
             // style={{ width: "48px", height: "48px" }}
@@ -109,7 +109,9 @@ const Sidebar = ({isslide,setIsslide,input}) => {
           <p className="font-semibold">John Doe</p>
           <p className="text-sm text-gray-400">View Profile</p>
         </div>
+        
       </div>
+       
     </motion.div>
   );
 };

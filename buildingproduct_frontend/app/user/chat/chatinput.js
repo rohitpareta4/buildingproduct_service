@@ -5,7 +5,7 @@ import { useState } from "react"
 import { useHospitalstore } from "@/app/hospital/store/useHopitalstore"
 import { useQuery } from "@tanstack/react-query"
 
-const Chatinput = ({input,setInput,load,setLoad}) => {
+const Chatinput = ({handleVibrate,input,setInput,load,setLoad}) => {
 
    const {getinfoforUser,userqueries}=useHospitalstore()
 
@@ -19,6 +19,7 @@ const Chatinput = ({input,setInput,load,setLoad}) => {
     onSuccess:(done)=>{
         setLoad(true)
       setInput("")
+      handleVibrate()
       console.log(done)
     }
    })

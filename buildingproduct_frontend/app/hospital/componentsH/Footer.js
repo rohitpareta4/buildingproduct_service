@@ -28,7 +28,10 @@
 
 import { Phone, Mail, MapPin } from "lucide-react"
 import Link from "next/link"
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 const Footer = () => {
   return (
@@ -58,7 +61,11 @@ const Footer = () => {
             <li><Link href="/" className="hover:text-yellow-300 transition-colors">Home</Link></li>
             <li><Link href="/beds" className="hover:text-yellow-300 transition-colors">Available Beds</Link></li>
             <li><Link href="/doctors" className="hover:text-yellow-300 transition-colors">Doctors</Link></li>
+<<<<<<< Updated upstream
             <li><Link href="/ambulance" className="hover:text-yellow-300 transition-colors">Ambulance</Link></li>
+=======
+            <li><Link href="/ambulance" className="hover:text-yellow-300 transition-colors">Ambulance</a></li>
+>>>>>>> Stashed changes
           </ul>
         </div>
 
