@@ -6,8 +6,6 @@ import Chatcontainer from "../chat/chatcontainer"
 import Chatinput from "../chat/chatinput"
 import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
 
-
-
 export default function Askai(){
 
   // const [expand,setExpand]=useState(false)
@@ -18,7 +16,6 @@ export default function Askai(){
 
    const [vibrate, setVibrate] = useState(false);
 
-  // 🌀 Trigger vibration for 0.5s on button click
   const handleVibrate = () => {
     setVibrate(true);
     setTimeout(() => setVibrate(false), 1000); // stop after 0.5 seconds
@@ -41,9 +38,6 @@ export default function Askai(){
               <ViewSidebarIcon onClick={()=>setIsslide(prev => !prev)} className="text-white top-16 left-4 cursor-pointer absolute" style={{ height:"36px", width:"36px" }}/>
             </div>
         )}
-          
-    
-
           {/* <div className={`bg-[#181818] col-span-3`}> */}
           <div className={`${isslide?'w-11/12':'w-3/4'}`}>
             <NavbarU vibrate={vibrate}/>
