@@ -25,7 +25,7 @@ console.log('✅ JWT_SECRET:', process.env.JWT_SECRET);
 
 app.use(cors(
     {
- origin:"https://asktohospitals5.vercel.app/",
+ origin:"https://buildingproduct-service.onrender.com",
   methods: ["GET", "POST" ,'PUT', 'DELETE', 'PATCH'],
   credentials: true
     }
