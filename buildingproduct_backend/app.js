@@ -25,7 +25,7 @@ console.log('✅ JWT_SECRET:', process.env.JWT_SECRET);
 
 app.use(cors(
     {
- origin:"https://buildingproduct-service-rayd.vercel.app",
+ origin:"https://buildingproduct-service-7peq.vercel.app",
   methods: ["GET", "POST" ,'PUT', 'DELETE', 'PATCH'],
   credentials: true
     }
